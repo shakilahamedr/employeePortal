@@ -1,10 +1,10 @@
-package com.shakil.jwtold;
+package com.empPortal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JwtoldApplicationTests {
+class EmpPortalApplicationTests {
 
 	@Test
 	void contextLoads() {

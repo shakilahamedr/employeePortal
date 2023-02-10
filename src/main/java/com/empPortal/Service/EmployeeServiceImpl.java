@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.empPortal.repository.EmployeeRepository;
 import com.empPortal.model.Employee;
-import com.empPortal.Service.EmployeeService;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -28,8 +27,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public Employee addEmployee(Employee employee) {
-		employeeRepository.save(employee);
-		return employee;
+		Employee savedEmployee = employeeRepository.save(employee);
+		return savedEmployee;
 	}
 	
 	@Override
@@ -48,18 +47,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if(employee.getGender()!=null) {
 			emp.setGender(employee.getGender());
 		}
-//		if(employee.getEmail()!=null) {
-//			emp.setEmail(employee.getEmail());
-//		}
-//		if(employee.getMobileNo()!=null) {
-//			emp.setMobileNo(employee.getMobileNo());
-//		}
-//		if(employee.getAddress()!=null) {
-//			emp.setAddress(employee.getAddress());
-//		}
-//		if(employee.getDept()!=null) {
-//			emp.setDept(employee.getDept());
-//		}
+		if(employee.getEmail()!=null) {
+			emp.setEmail(employee.getEmail());
+		}
+		if(employee.getDept()!=null) {
+			emp.setDept(employee.getDept());
+		}
+		if(employee.getAddress()!=null) {
+			emp.setAddress(employee.getAddress());
+		}
+		if(employee.getPhone()!=null) {
+			emp.setPhone(employee.getPhone());
+		}
 		
 		employeeRepository.save(emp);
 		return employee;

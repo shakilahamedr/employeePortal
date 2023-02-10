@@ -21,8 +21,7 @@ import com.empPortal.Service.CustomUserDetailsService;
 public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 
 	public static final String[] PUBLIC_URLS = {"/api/v1/auth/**", "/v3/api-docs", "/v2/api-docs",
-            "/swagger-resources/**", "/swagger/**", "/swagger-ui/**", "/webjars/**", "/employees/saveEmployee/**"
-
+            "/swagger-resources/**", "/swagger/**", "/swagger-ui/**", "/webjars/**"
     };
 	
 	@Autowired
@@ -40,7 +39,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
 			.disable()
 			.authorizeRequests()
             .antMatchers(PUBLIC_URLS).permitAll()
-			.antMatchers("/generateToken").permitAll()
+			.antMatchers("/generateToken", "/register", "/login").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

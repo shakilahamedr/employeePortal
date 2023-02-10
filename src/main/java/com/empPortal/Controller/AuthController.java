@@ -7,18 +7,23 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.empPortal.Service.CustomUserDetailsService;
+import com.empPortal.Service.EmployeeService;
 import com.empPortal.helper.JwtUtil;
+import com.empPortal.model.Employee;
+import com.empPortal.model.User;
+import com.empPortal.repository.UserRepository;
 import com.empPortal.vo.JwtRequest;
 import com.empPortal.vo.JwtResponse;
 
 @RestController
-public class JwtController {
+public class AuthController {
 
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
@@ -28,6 +33,25 @@ public class JwtController {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private UserRepository userRep;
+	
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@PostMapping("/register")
+	public Employee register(@RequestBody Employee employee) {
+		return employeeService.addEmployee(employee);
+	}
+	
+	@PostMapping("/login")
+	public Employee login(@RequestBody JwtRequest credentials) {
+		User user = userRep.findByUsername(credentials.getUsername());
+//		employeeService.getEmployeeById(user.getEmp());
+		return user.getEmp();
+	}
+	
 	
 	@RequestMapping(value = "/generateToken", method = RequestMethod.POST)
 	public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception {
@@ -51,4 +75,5 @@ public class JwtController {
 		
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
+	
 }

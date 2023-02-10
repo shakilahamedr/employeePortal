@@ -1,7 +1,5 @@
 package com.empPortal.Config;
 
-import java.util.Arrays;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,7 +7,6 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 // URL to access swagger-ui =   http://localhost:9095/swagger-ui/
 // URL to view API docs = http://localhost:9095/v2/api-docs

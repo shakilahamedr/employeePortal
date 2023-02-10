@@ -6,18 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.empPortal.model.Employee;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -34,13 +24,14 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="user_id")
 	private Long userId;
 	
-	//@Column(name="user_name")
+	@NotEmpty(message = "username cannot be null")
+	@Size(min = 4)
 	private String username;
 	
-	//@Column(name="pass_word")
+	@NotEmpty(message = "password cannot be null")
+	@Size(min = 5, max = 15)
 	private String password;
 	
 	@JsonBackReference

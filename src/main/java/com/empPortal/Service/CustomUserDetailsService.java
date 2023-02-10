@@ -1,7 +1,5 @@
 package com.empPortal.Service;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,13 +27,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 			return new CustomUserDetails(user);
 		}
 		
-//		if(username.equals("Shakil"))
-//		{
-//			return new User("Shakil","Shakil123", new ArrayList<>());
-//		}
-//		else {
-//			throw new UsernameNotFoundException("User not found !!");
-//		}
 	}
   
 }
